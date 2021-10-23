@@ -1,0 +1,45 @@
+.recentCard{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #E7EAF3;
+    border-radius: 12px;
+    padding: .5rem .75rem;
+    margin: 1rem auto;
+    cursor: pointer;
+
+    &:nth-of-type(1){
+        margin-top: 0;
+    }
+
+    &Image{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &Main{
+            background-color: #F5F5F5;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: .6em;
+            width: 50px;
+            height: 50px;
+        }
+
+        h2{
+            font-size: 1rem;
+        }
+        
+        span{
+            font-size: .9rem;
+            color: #A4A4A4;
+        }
+    }
+
+    &Date{
+        font-size: 1rem;
+        color: #A4A4A4;
+    }
+}

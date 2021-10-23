@@ -1,0 +1,118 @@
+.sidebar {
+  width: 5em;
+  // padding: 1em 3em 0;
+  background-color: #f8f8f8;
+  height: 100%;
+
+  nav {
+    margin: 0;
+    height: 100%;
+
+    ul {
+      padding-inline-start: 0;
+      margin: 0;
+      list-style-type: none;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+
+      li {
+        // padding: 2em 3em;  
+        // transition: background-color 0.2s linear;
+        // align-items: center;
+        // display: flex;
+        // justify-content: center;
+        // border-radius: 2px;
+
+        // img {
+        //   margin-right: 1em;
+        // }
+      }
+
+      a {
+        flex: 1;
+        text-decoration: none;
+        color: white;
+
+        li{
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        &.active {
+          // display: block;
+          border-left: 3px solid #7567ce;
+          color: black;
+        }
+      }
+
+      @media screen and (max-width: 880px) {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        height: 20px;
+        
+        a {
+          flex: 1;
+          height: 100%;
+          margin: auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          &.active{
+            border:none;
+            border-bottom: 3px solid #7567ce;
+          }
+
+          &.logo,
+          &.logout {
+            display: none;
+            width: 0;
+          }
+
+          li {
+            padding: 0;
+          }
+        }
+      }
+      @media screen and (max-width: 880px) {
+        height: 100%;
+      }
+    }
+    @media screen and (max-width: 880px) {
+      height: 100%;
+    }
+  }
+
+  @media screen and (max-width: 880px) {
+    width: 100vw;
+    top: 0em;
+    margin-top: 0em;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: row;
+    min-height: 50px;
+    height: 70px;
+    transition: all 0.3s linear;
+    padding: 0;
+
+    ul {
+      li {
+        text-align: center;
+        justify-content: space-between;
+      }
+    }
+
+    &.visibleNav {
+      left: 0;
+    }
+
+    &.inVisibleNav {
+      left: -150%;
+    }
+  }
+}
