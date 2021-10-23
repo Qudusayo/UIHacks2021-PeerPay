@@ -1,0 +1,179 @@
+.Funding {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media screen and (max-width: 880px) {
+    padding-top: 2em;
+  }
+
+  &Amount {
+    width: 70%;
+    margin: auto;
+    padding: 1em 0 2em;
+
+    @media screen and (max-width: 490px) {
+      width: 90%;
+    }
+
+    label {
+      display: block;
+      width: 100%;
+      margin: auto;
+      font-size: 0.9em;
+      color: black;
+      padding-left: 1em;
+    }
+
+    input {
+      display: block;
+      width: 100%;
+      padding-left: 1em;
+      height: 45px;
+      border-radius: 7px;
+      font-size: 1em;
+      margin: 0.3em auto 1em;
+      outline: none;
+      border: 1px solid #7567ce;
+      color: #7567ce;
+
+      &:disabled {
+        cursor: not-allowed;
+      }
+
+      &:focus {
+        border: 1px solid #7567ce;
+      }
+
+      @media screen and (max-width: 490px) {
+        width: 90%;
+      }
+    }
+
+    .inputSymbolNaira,
+    .inputHeavySymbolNaira {
+      position: relative;
+
+      input {
+        padding-left: 25px;
+        width: 94%;
+        font-size: 1.2em;
+
+        @media screen and (max-width: 490px) {
+          padding-left: 15px;
+        }
+      }
+
+      &:before {
+        position: absolute;
+        top: 19.5px;
+        font-size: 1.2em;
+        z-index: 10;
+        content: "₦";
+        left: 20px;
+        font-weight: bolder;
+        color: #7567ce;
+
+        @media screen and (max-width: 490px) {
+          left: 10px;
+        }
+      }
+    }
+
+    .inputHeavySymbolNaira {
+      &:before {
+        top: 18px;
+      }
+    }
+
+    button {
+      display: block;
+      width: 98%;
+      margin: auto;
+      height: 50px;
+      border-radius: 7px;
+      font-size: 1em;
+      cursor: pointer;
+      outline: none;
+      border: none;
+      background-color: #7567ce;
+      color: white;
+      box-shadow: 0 4px 1px rgba(black, 0.4);
+      transition: box-shadow 0.2s linear;
+
+      &:hover {
+        box-shadow: 0 4px 1px rgba(black, 0.7);
+      }
+
+      &:disabled {
+        background-color: #e2d1fc;
+
+        &:hover {
+          transform: translateY(0);
+          cursor: not-allowed;
+        }
+      }
+
+      .spinner {
+        width: 2em;
+        height: 2em;
+        animation: rotate 1s linear infinite;
+      }
+
+      @media screen and (max-width: 490px) {
+        width: 100%;
+      }
+    }
+  }
+
+  &Block {
+    width: 65%;
+
+    @media screen and (max-width: 880px) {
+      width: 90%;
+    }
+
+    &s {
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+      border-radius: 5px;
+      margin: 1em 0;
+      padding: 2em;
+
+      .titleBlock {
+        cursor: pointer;
+      }
+
+      .blockContent {
+        border-top: 1px solid #f4f4f4;
+        margin: 1em 0 0;
+        padding-top: 1em;
+
+        svg {
+          display: block;
+          margin: auto;
+        }
+
+        button {
+          display: block;
+          width: 100%;
+          margin: auto;
+          height: 50px;
+          border-radius: 7px;
+          font-size: 1em;
+          cursor: pointer;
+          outline: none;
+          border: none;
+          background-color: #7567ce;
+          color: white;
+          box-shadow: 0 4px 1px rgba(black, 0.4);
+          transition: box-shadow 0.2s linear;
+
+          &:hover {
+            box-shadow: 0 4px 1px rgba(black, 0.7);
+          }
+        }
+      }
+    }
+  }
+}

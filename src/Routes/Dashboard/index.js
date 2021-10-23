@@ -30,9 +30,11 @@ class index extends Component {
                 <h1>₦ 80,000</h1>
               </div>
               <div className={styles.balanceCardControllers}>
-                <div>
-                  <img src={plus} alt="plus" width="25" />
-                </div>
+                <Link to='/fund' >
+                  <div>
+                    <img src={plus} alt="plus" width="25" />
+                  </div>
+                </Link>
                 <div>
                   <img src={send} alt="send" width="25" />
                 </div>

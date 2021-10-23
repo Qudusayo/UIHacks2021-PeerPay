@@ -7,6 +7,7 @@ import "./App.scss";
 import Dashboard from "./Routes/Dashboard";
 import Qr from "./Routes/Qr";
 import Payment from "./Routes/Payment";
+import Fund from "./Routes/Fund";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <Route path='/dashboard' component={Dashboard} />
       <Route path='/qr' component={Qr} />
       <Route path='/transfer' component={Payment} />
+      <Route path='/fund' component={Fund} />
     </Switch>
   );
 }
