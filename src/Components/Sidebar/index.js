@@ -43,7 +43,7 @@ class Index extends Component {
               </li>
             </NavLink>
 
-            <NavLink to="/airtime-topup" exact activeClassName={styles.active}>
+            <NavLink to="/transactions" exact activeClassName={styles.active}>
               <li>
                 <img src={insight} alt="insight" width="25" />
               </li>

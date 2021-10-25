@@ -27,7 +27,7 @@ function Qr() {
                   <span>Scan my QR to add me as a friend</span>
                 </div>
                 <QRCode
-                  value={"https://peerpay.vercel.app/user=Qudusayo"}
+                  value={"http://localhost:3000/?peerId=Qudusayo"}
                   size={250}
                   bgColor={"#ffffff"}
                   fgColor={"#6055A9"}
@@ -51,7 +51,7 @@ function Qr() {
                 </div>
                 <QRCode
                   value={
-                    "https://peerpay.vercel.app/payId=Memme%20amount=500%20currency=dollar"
+                    "http://localhost:3000/payId=Memme%20amount=500%20currency=dollar"
                   }
                   size={250}
                   bgColor={"#ffffff"}

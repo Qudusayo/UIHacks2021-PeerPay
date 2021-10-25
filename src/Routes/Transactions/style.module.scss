@@ -6,6 +6,17 @@
   }
 
   &Panel1{
+    &Nav{
+      text-align: center;
+      padding: 1.2em 0;
+      margin-bottom: 1em;
+      font-weight: 400;
+      position: sticky;
+      top: 0;
+      background-color: white;
+      border-bottom: 1px solid #E7EAF3;
+    }
+  
     flex: 2.5;
     .balanceCard{
       background-color: #7567CE;

@@ -5,19 +5,14 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import Wrapper from "./../../Components/Wrapper";
 
-import RecentCard from "./RecentCard";
-
-import send from "./../../assets/icons/send.svg";
-import plus from "./../../assets/icons/plus.svg";
-import recieve from "./../../assets/icons/recieve.svg";
+import RecentCard from "../Dashboard/RecentCard";
 
 import styles from "./style.module.scss";
 
-class index extends Component {
+class Transactions extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      balance: 0,
       transactions: [],
     };
   }
@@ -28,11 +23,10 @@ class index extends Component {
     axios
       .get(api, { headers: { Authorization: `Bearer ${token}` } })
       .then((res) => {
-        console.log(res.data);
         this.setState({
-          transactions: res.data.transactions.slice(0, 9),
-          balance: res.data.balance
+          transactions: res.data.transactions,
         });
+        console.log(res.data);
       });
   }
 
@@ -40,45 +34,15 @@ class index extends Component {
     return (
       <Wrapper>
         <Helmet>
-          <title>PeerPay | Dashboard </title>
+          <title>PeerPay | Transactions </title>
         </Helmet>
         <div className={styles.dashboard}>
           <div className={styles.dashboardPanel1}>
-            <div className={styles.balanceCard}>
-              <div className={styles.balanceCardContent}>
-                <span>Balance</span>
-                <h1>₦ {parseFloat(this.state.balance).toFixed(2)}</h1>
-              </div>
-              <div className={styles.balanceCardControllers}>
-                <Link to="/fund">
-                  <div>
-                    <img src={plus} alt="plus" width="25" />
-                  </div>
-                </Link>
-                <Link to="/transfer">
-                  <div>
-                    <img src={send} alt="send" width="25" />
-                  </div>
-                </Link>
-                <div>
-                  <img src={recieve} alt="recieve" width="25" />
-                </div>
-              </div>
+            <div  className={styles.dashboardPanel1Nav}>
+              Transactions
             </div>
             <div className={styles.recent}>
-              <div className={styles.recentHeader}>
-                <h3>Recent Activity</h3>
-                <h3>
-                  <Link to="/transactions">See All &gt;</Link>
-                </h3>
-              </div>
               <div className={styles.recentHeaderTransactions} >
-                {/* <RecentCard />
-                <RecentCard />
-                <RecentCard />
-                <RecentCard />
-                <RecentCard /> */}
-
                 {this.state.transactions.length ? (
                   this.state.transactions.map((transaction) => (
                     <RecentCard
@@ -113,4 +77,4 @@ class index extends Component {
   }
 }
 
-export default index;
+export default Transactions;
