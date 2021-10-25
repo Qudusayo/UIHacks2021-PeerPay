@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import QRCode from "qrcode.react";
 
@@ -13,12 +13,11 @@ function Qr() {
   const scanController = () => scanStatusHandler(!scanStatus);
 
   const saveQr = () => {
-    var canvas = document.getElementById("svg");
-    console.log(canvas);
-    var image = canvas
-      .toDataURL("image/png")
-      .replace("image/png", "image/octet-stream"); //Convert image to 'octet-stream' (Just a download, really)
-    window.location.href = image;
+    const canvasSave = document.getElementById('svg');
+    const d = canvasSave.toDataURL('image/png');
+    const w = window.open('about:blank', 'image from canvas');
+    w.document.write("<img src='"+d+"' alt='from canvas'/>");
+    console.log('Saved!');
   };
 
   return (
