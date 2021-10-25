@@ -21,13 +21,14 @@ class Scan extends Component {
   }
 
   handleScan = (data) => {
-    let validPeerLink = data && data.startsWith('http://localhost:3000');
+    let validPeerLink = data && data.startsWith('https://peerpay.vercel.app/transfer');
+    let info = {
+      peerId: this.getParameterByName('peerId', data),
+      amount: this.getParameterByName('amount', data),
+      description: this.getParameterByName('description', data)
+    }
     if (data) {
-      // this.setState({
-      //   result: data
-      // })
-      alert(this.getParameterByName('peerId'));
-      alert(data);
+      console.log(validPeerLink, info);
     }
   };
   handleError = (err) => {

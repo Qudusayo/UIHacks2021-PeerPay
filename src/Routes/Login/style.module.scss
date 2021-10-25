@@ -73,6 +73,10 @@
         padding: 0 1rem;
         font-size: 1em;
         color: #6055a9;
+
+        @media screen and (max-width: 760px) {
+          width: 90%;
+        }
       }
     }
 

@@ -22,15 +22,15 @@ class index extends Component {
     };
   }
   componentDidMount() {
-    console.log("mounted");
+    // console.log("mounted");
     const api = `http://localhost:4000/clientTransaction`;
     const token = Cookies.get("_peer__pay");
     axios
       .get(api, { headers: { Authorization: `Bearer ${token}` } })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         this.setState({
-          transactions: res.data.transactions.slice(0, 9),
+          transactions: res.data.transactions.reverse().slice(0, 9),
           balance: res.data.balance
         });
       });

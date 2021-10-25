@@ -17,16 +17,16 @@ class Transactions extends Component {
     };
   }
   componentDidMount() {
-    console.log("mounted");
+    // console.log("mounted");
     const api = `http://localhost:4000/clientTransaction`;
     const token = Cookies.get("_peer__pay");
     axios
       .get(api, { headers: { Authorization: `Bearer ${token}` } })
       .then((res) => {
         this.setState({
-          transactions: res.data.transactions,
+          transactions: res.data.transactions.reverse(),
         });
-        console.log(res.data);
+        // console.log(res.data);
       });
   }
 

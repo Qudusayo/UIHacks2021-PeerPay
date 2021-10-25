@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import QRCode from "qrcode.react";
 
@@ -12,6 +12,15 @@ function Qr() {
 
   const scanController = () => scanStatusHandler(!scanStatus);
 
+  const saveQr = () => {
+    var canvas = document.getElementById("svg");
+    console.log(canvas);
+    var image = canvas
+      .toDataURL("image/png")
+      .replace("image/png", "image/octet-stream"); //Convert image to 'octet-stream' (Just a download, really)
+    window.location.href = image;
+  };
+
   return (
     <Wrapper>
       <Helmet>
@@ -21,7 +30,7 @@ function Qr() {
         {!scanStatus ? (
           <>
             <div className={styles.qrCodes}>
-              <div className={styles.qrCodesBlock}>
+              {/* <div className={styles.qrCodesBlock}>
                 <div>
                   <h2>Invite Qr</h2>
                   <span>Scan my QR to add me as a friend</span>
@@ -43,22 +52,21 @@ function Qr() {
                     excavate: true,
                   }}
                 />
-              </div>
+              </div> */}
               <div className={styles.qrCodesBlock}>
                 <div>
                   <h2>Payment Qr</h2>
-                  <span>Scan my QR make payment</span>
+                  <span>Scan my QR to make payment</span>
                 </div>
                 <QRCode
-                  value={
-                    "http://localhost:3000/payId=Memme%20amount=500%20currency=dollar"
-                  }
+                  id="svg"
+                  value={`https://peerpay.vercel.app/transfer?peerId=qudusayo&amount=&description=${"Wallet Fund"}`}
                   size={250}
                   bgColor={"#ffffff"}
                   fgColor={"#6055A9"}
                   level={"Q"}
                   includeMargin={false}
-                  renderAs={"svg"}
+                  renderAs={"canvas"}
                   imageSettings={{
                     src: "https://i.ibb.co/tZY7Kny/peerpay.png",
                     x: null,
@@ -68,13 +76,18 @@ function Qr() {
                     excavate: true,
                   }}
                 />
+                <div>
+                  <button onClick={() => saveQr()} >Save QR</button>
+                </div>
               </div>
             </div>
           </>
         ) : (
           <Scan />
         )}
-        <button onClick={() => scanController()}>{ scanStatus ? 'Show' : 'Scan' } Qr</button>
+        <button onClick={() => scanController()}>
+          {scanStatus ? "Show" : "Scan"} Qr
+        </button>
       </div>
     </Wrapper>
   );

@@ -57,17 +57,17 @@
 
       input {
         padding-left: 25px;
-        width: 94%;
+        width: 92%;
         font-size: 1.2em;
 
         @media screen and (max-width: 490px) {
-          padding-left: 15px;
+          padding-left: 25px;
         }
       }
 
       &:before {
         position: absolute;
-        top: 19.5px;
+        top: 19px;
         font-size: 1.2em;
         z-index: 10;
         content: "₦";

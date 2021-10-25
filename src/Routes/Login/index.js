@@ -32,7 +32,7 @@ class Login extends Component {
       .post(`http://localhost:4000/auth/signin`, data)
       .then((response) => {
         console.log(response.data)
-        Cookies.set('_peer__pay', response.data.authToken, { expires: 1/48 })
+        Cookies.set('_peer__pay', response.data.authToken)
         return this.props.history.push('/dashboard')
       })
       .catch((error) => {

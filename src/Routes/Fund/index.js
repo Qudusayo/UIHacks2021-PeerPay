@@ -83,7 +83,7 @@ class Fund extends Component {
                 title="Accept with QR Scan"
               >
                 <QRCode
-                  value={`http://localhost:3000/login?phoneNumber=qudusayo&password=qudusayo#`}
+                  value={`https://peerpay.vercel.app/transfer?peerId=qudusayo&amount=${this.state.amount}&description=${'Wallet Fund'}`}
                   size={250}
                   bgColor={"#ffffff"}
                   fgColor={"#6055A9"}
