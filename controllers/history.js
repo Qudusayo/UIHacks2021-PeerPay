@@ -12,6 +12,7 @@ module.exports = function setTransactionHistory(
   reciever,
   sender,
   info,
+  status,
   type,
   id = nanoid()
 ) {
@@ -22,6 +23,7 @@ module.exports = function setTransactionHistory(
     from: sender,
     to: reciever,
     date: moment().utcOffset(1).format("lll"),
+    positive: status,
     additionalInfo: info,
   });
 

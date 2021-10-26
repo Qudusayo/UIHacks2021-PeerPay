@@ -67,6 +67,7 @@ router.post("/", authenticateToken, async (req, res) => {
         initialBalance: parseInt(sender.balance),
         newBalance: parseInt(sender.balance) - parseInt(amount),
       },
+      false,
       "Peer Transfer",
     );
   } 
@@ -99,6 +100,7 @@ router.post("/", authenticateToken, async (req, res) => {
         initialBalance: recipient.balance,
         newBalance: parseInt(recipient.balance) + parseInt(amount),
       },
+      true,
       "Peer Recieve",
     );
     return res.json({ error: false });
