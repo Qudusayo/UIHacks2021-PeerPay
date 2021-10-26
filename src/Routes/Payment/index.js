@@ -84,6 +84,7 @@ class Payment extends Component {
           <title>PeerPay | Pay </title>
         </Helmet>
         <div className={styles.payment}>
+          <span className={styles.header} >Transfer</span>
           <div className={styles.paymentType}>
             <div className={styles.paymentTypeSelection}>
               <div onClick={() => this.switchPaymentType("qr")}>

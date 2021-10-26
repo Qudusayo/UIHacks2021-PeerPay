@@ -31,7 +31,7 @@ class index extends Component {
     axios
       .get(api, { headers: { Authorization: `Bearer ${token}` } })
       .then((res) => {
-        // console.log(res.data);
+        console.log(res.data);
         this.setState({
           fetchingData: false,
           transactions: res.data.transactions.reverse().slice(0, 9),
@@ -114,6 +114,7 @@ class index extends Component {
                       peerId={transaction.to}
                       date={transaction.date}
                       amount={transaction.amount}
+                      positive={transaction.positive}
                     />
                   ))
                 ) : (

@@ -49,7 +49,7 @@ class Index extends Component {
               </li>
             </NavLink>
             
-            <NavLink to="/airtime-topup" exact activeClassName={styles.active}>
+            <NavLink to="/settings" exact activeClassName={styles.active}>
               <li>
                 <img crossOrigin='anonymous' src={settings} alt="settings" width="25" />
               </li>

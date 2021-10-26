@@ -11,6 +11,7 @@ import Fund from "./Routes/Fund";
 import Login from './Routes/Login'
 import Signup from "./Routes/Signup";
 import Transactions from "./Routes/Transactions";
+import Settings from "./Routes/Settings";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
       <Route path="/login" component={Login} />
       <Route path="/register" component={Signup} />
       <Route path="/fund" component={Fund} />
+      <Route path="/settings" component={Settings} />
       <Route path="/transactions" component={Transactions} />
     </Switch>
   );

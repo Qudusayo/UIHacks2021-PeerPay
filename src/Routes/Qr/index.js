@@ -1,27 +1,58 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import QRCode from "qrcode.react";
-import { withRouter } from 'react-router-dom'
+import { withRouter } from "react-router-dom";
+import Swal from "sweetalert2";
 
 import Wrapper from "./../../Components/Wrapper";
 import Scan from "./Scan";
 
 import styles from "./style.module.scss";
-// import Payment from "../Payment";
+import transfer from "../../controllers/transfer";
 
 function Qr(props) {
   const [scanStatus, scanStatusHandler] = useState(false);
+  const [transferStatus, transferStatusHandler] = useState(false);
 
   const scanController = () => scanStatusHandler(!scanStatus);
+  const transferController = () => transferStatusHandler(!transferStatus);
 
   const fixScanData = (data) => {
     if (data.peerId && data.amount && data.description) {
-      alert("Lets Pay");
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Transfer!",
+      }).then(async (result) => {
+        transferController()
+        if (result.isConfirmed) {
+          const transferResponse = await transfer(
+            data.peerId,
+            data.amount,
+            data.description
+          );
+  
+          if (!transferResponse.data.error) {
+            return Swal.fire("Success!", "Your transfer was successful.", "success");
+            transferController()
+            
+          } else {
+            transferController()
+            return Swal.fire("Failed!", transferResponse.data.message, "error");
+          }
+        }
+      });
     } else {
       alert("Move to transfer Page");
     }
-    if(!(!!data.amount && !!data.peerId && !!data.description)){
-      props.history.push(`transfer?peerId=${data.peerId}&amount=${data.amount}&description=${data.description}`)
+    if (!(!!data.amount && !!data.peerId && !!data.description)) {
+      props.history.push(
+        `transfer?peerId=${data.peerId}&amount=${data.amount}&description=${data.description}`
+      );
     }
     console.log(data);
   };

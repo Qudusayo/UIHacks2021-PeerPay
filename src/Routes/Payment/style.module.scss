@@ -5,6 +5,12 @@
   padding-top: 2em;
   height: 100%;
 
+  .header{
+    position: fixed;
+    top: 1em;
+    color: #7567ce;
+  }
+
   @media screen and (max-width: 880px) {
     flex-direction: column-reverse;
   }
