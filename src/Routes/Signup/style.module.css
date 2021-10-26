@@ -1,0 +1,158 @@
+.container {
+  width: 100%;
+  margin: auto;
+  /* background-color: #E3D0FF; */
+}
+.accountHead {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid #e3d0ff;
+  align-items: center;
+}
+.icon {
+  width: 30%;
+  margin-left: 3%;
+}
+.icon img {
+  width: 40px;
+}
+.accountSignIn {
+  width: 40;
+  /* margin-left: 40%; */
+  text-align: right;
+}
+.accountSignIn a:link,
+.accountSignIn a:hover,
+.accountSignIn a:focus,
+.accountSignIn a:visited {
+  color: #6055A9
+}
+a {
+  text-decoration: none;
+}
+.accSetup {
+  display: flex;
+  justify-content: space-around;
+  padding: 3rem 2rem 3rem 4rem;
+}
+.accSetupBenefit {
+  width: 40%;
+  padding: 2rem;
+}
+.accSetupBenefit div {
+  display: flex;
+  align-items: center;
+  justify-content: space-betwee;
+}
+.accSetupBenefit img {
+  width: 1.3rem;
+  height: 1.3rem;
+  color: #a090eb;
+}
+.accSetupBenefit p {
+  padding: 1.5rem 1.5rem 1.5rem 0;
+  margin-left: 0.5rem;
+}
+.accSetupFormVerify {
+  width: 65%;
+  display: flex;
+  justify-content: space-around;
+}
+.accSetupForm {
+  width: 55%;
+  padding: 2rem;
+}
+.accSetupForm input {
+  margin-bottom: 2rem;
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: 5px;
+  border: 1px solid #e3d0ff;
+}
+input:focus-visible {
+  outline: 1.5px solid #6055a9;
+  border: 1px solid #6055a9;
+}
+form button {
+  width: 100%;
+  outline: none;
+  border: none;
+  background-color: #6055a9;
+  margin: 0.3rem 0 0;
+  padding: 0.8rem 0;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 7px;
+}
+#checkbox input {
+  margin-bottom: unset;
+  margin-top: 0.8rem;
+  margin-right: 0.5rem;
+  width: unset;
+  padding: 0.6rem;
+  border-radius: unset;
+  border: unset;
+}
+/* #checkbox input {
+    cursor: pointer;
+    background-color: #222249;
+    position: fixed;
+    left: 99999px;
+  }
+  
+#checkbox input:checked + label:before {
+    content: "\2713\0020";
+    color: #ffffff;
+    font-size: larger;
+    text-align: center;
+    position: absolute;
+    margin-top: -3px;
+    width: 20px;
+    height: 20px;
+  } */
+
+@media screen and (max-width: 768px) {
+
+  .accSetup {
+    flex-direction: column;
+    padding: 0;
+    width: 100%;
+  }
+  .accSetupBenefit {
+    width: 100%;
+    padding: 2rem 0;
+    text-align: center;
+  }
+  .accSetupBenefit div {
+    display: none;
+  }
+  .account-head {
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem .2rem;
+  }
+  .accountSignIn {
+    margin-left: 0;
+    width: 60%;
+  }
+  .accSetupForm {
+    width: 80%;
+    margin: auto;
+    padding: 0;
+    /* margin-left: 1rem; */
+  }
+
+  .accSetupForm form input{
+      display: block;
+      margin-top: .2em;
+    width: 90%;
+}
+}
+@media screen and (max-width: 449px) {
+  .accSetupBenefit h1 {
+      color: #6055A9;
+    font-size: 1.5rem;
+  }
+}

@@ -6,7 +6,7 @@ const transfer = async (receiver, amount, description) => {
 
   console.log(receiver, amount, description, token)
   const response = await axios.post(
-    "http://localhost:4000/clientTransfer",
+    "${process.env.REACT_APP_BACKEND_URI}/clientTransfer",
     {
       receiver,
       amount,

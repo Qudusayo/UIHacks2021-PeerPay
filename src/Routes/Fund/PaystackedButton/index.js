@@ -5,7 +5,7 @@ const config = {
   reference: new Date().getTime().toString(),
   email: "user@example.com",
   amount: 20000,
-  publicKey: "pk_test_86f1ba3ff3fbb0cf5bfe7ae8b7a21ff7f4f877d4",
+  publicKey: `${process.env.EACT_APP_PAYMENT_SECRET}`,
 };
 
 function PaystackedButton({ amount }) {

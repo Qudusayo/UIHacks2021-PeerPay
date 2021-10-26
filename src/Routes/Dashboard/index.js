@@ -26,7 +26,7 @@ class index extends Component {
 
   componentDidMount() {
     // console.log("mounted");
-    const api = `http://localhost:4000/clientTransaction`;
+    const api = `${process.env.REACT_APP_BACKEND_URI}/clientTransaction`;
     const token = Cookies.get("_peer__pay");
     axios
       .get(api, { headers: { Authorization: `Bearer ${token}` } })

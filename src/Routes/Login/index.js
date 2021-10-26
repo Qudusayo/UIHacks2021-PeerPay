@@ -34,7 +34,7 @@ class Login extends Component {
     this.setState({ processing: true });
 
     axios
-      .post(`http://localhost:4000/auth/signin`, data)
+      .post(`${process.env.REACT_APP_BACKEND_URI}/auth/signin`, data)
       .then((response) => {
         console.log(response.data);
         if (response.data.authenticated) {

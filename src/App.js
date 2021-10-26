@@ -9,6 +9,7 @@ import Qr from "./Routes/Qr";
 import Payment from "./Routes/Payment";
 import Fund from "./Routes/Fund";
 import Login from './Routes/Login'
+import Signup from "./Routes/Signup";
 import Transactions from "./Routes/Transactions";
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
       <Route path="/qr" component={Qr} />
       <Route path="/transfer" component={Payment} />
       <Route path="/login" component={Login} />
+      <Route path="/register" component={Signup} />
       <Route path="/fund" component={Fund} />
       <Route path="/transactions" component={Transactions} />
     </Switch>
