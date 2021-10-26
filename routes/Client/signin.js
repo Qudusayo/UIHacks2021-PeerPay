@@ -28,7 +28,7 @@ router.post("/", async (req, res) => {
       };
       let authToken = jwt.sign(data, process.env.ACCESS_TOKEN_SECRET);
       res.setHeader("Set-Cookie", authToken);
-      res.json({ authToken, authenticated: verified });
+      res.json({ authToken, authenticated: verified, peerId: data.peerId });
     } else {
       res.status(200).json({
         data: { phoneNumber, password },
