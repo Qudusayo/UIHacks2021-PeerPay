@@ -37,8 +37,8 @@ function Qr(props) {
           );
   
           if (!transferResponse.data.error) {
-            return Swal.fire("Success!", "Your transfer was successful.", "success");
             transferController()
+            return Swal.fire("Success!", "Your transfer was successful.", "success");
             
           } else {
             transferController()

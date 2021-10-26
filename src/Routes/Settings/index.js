@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import { Link } from 'react-router-dom'
 import Wrapper from "./../../Components/Wrapper";
 
-import RecentCard from "../Dashboard/RecentCard";
+// import RecentCard from "../Dashboard/RecentCard";
 
 import styles from "./style.module.scss";
 
