@@ -7,7 +7,7 @@ import Wrapper from "./../../Components/Wrapper";
 import Scan from "./Scan";
 
 import styles from "./style.module.scss";
-import Payment from "../Payment";
+// import Payment from "../Payment";
 
 function Qr(props) {
   const [scanStatus, scanStatusHandler] = useState(false);

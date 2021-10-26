@@ -3,6 +3,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import Spinner from "./../../Components/Spinner";
 import Swal from "sweetalert2";
+import { Link } from 'react-router-dom'
 
 import logo from "./../../assets/icons/logo.svg";
 import styles from "./style.module.scss";
@@ -98,6 +99,7 @@ class Login extends Component {
           <button type="submit">
             {this.state.processing ? <Spinner /> : "Sign In"}
           </button>
+          <p><Link to='/register'> New User ? Sign Up</Link></p>
         </form>
       </div>
     );
