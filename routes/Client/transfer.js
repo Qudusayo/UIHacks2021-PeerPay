@@ -9,12 +9,13 @@ const setTransactionHistory = require("../../controllers/history");
 router.post("/", authenticateToken, async (req, res) => {
   const { amount, receiver } = req.body;
   const { peerId } = req.user;
-
+  
   const data = {
     amount,
     receiver,
     peerId,
   };
+  // console.log(peerId, data)
 
   if (parseInt(amount) < 0)
     return res.json({

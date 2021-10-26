@@ -12,7 +12,7 @@ router.post("/", async (req, res) => {
 
   const userWithPhoneNumber = await User.findOne({ phoneNumber });
   if (!userWithPhoneNumber) {
-    return res.status(404).json({
+    return res.status(200).json({
       data: { phoneNumber, password },
       errorMsg: "User not registered",
       authenticated: false,
@@ -28,14 +28,7 @@ router.post("/", async (req, res) => {
       };
       let authToken = jwt.sign(data, process.env.ACCESS_TOKEN_SECRET);
       res.setHeader("Set-Cookie", authToken);
-      res
-        .cookie("authToken", authToken, {
-          maxAge: 60 * 60 * 1000, // 1 hour
-          httpOnly: true,
-          secure: true,
-          sameSite: true,
-        })
-        .json({ authToken, authenticated: verified });
+      res.json({ authToken, authenticated: verified });
     } else {
       res.status(200).json({
         data: { phoneNumber, password },
