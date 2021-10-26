@@ -83,7 +83,9 @@ class Fund extends Component {
                 title="Accept with QR Scan"
               >
                 <QRCode
-                  value={`https://peerpay.vercel.app/transfer?peerId=qudusayo&amount=${this.state.amount}&description=${'Wallet Fund'}`}
+                  value={`https://peerpay.vercel.app/transfer?peerId=${localStorage.getItem(
+                    "_peer__ID"
+                  )}&amount=${this.state.amount}&description=${"Wallet Fund"}`}
                   size={250}
                   bgColor={"#ffffff"}
                   fgColor={"#6055A9"}
@@ -109,7 +111,7 @@ class Fund extends Component {
               </Collapse>
             </div>
           ) : (
-            <form className={styles.FundingAmount} onSubmit={this.onSubmit} >
+            <form className={styles.FundingAmount} onSubmit={this.onSubmit}>
               <label>Amount</label>
               <span className={styles.inputSymbolNaira}>
                 <input

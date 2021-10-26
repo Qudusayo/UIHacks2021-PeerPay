@@ -40,6 +40,7 @@ class Login extends Component {
         console.log(response.data);
         if (response.data.authenticated) {
           Cookies.set("_peer__pay", response.data.authToken);
+          localStorage.setItem("_peer__ID", response.data.peerId)
           return this.props.history.push("/dashboard");
         } else {
           Swal.mixin({

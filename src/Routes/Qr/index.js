@@ -28,20 +28,23 @@ function Qr(props) {
         cancelButtonColor: "#d33",
         confirmButtonText: "Transfer!",
       }).then(async (result) => {
-        transferController()
+        transferController();
         if (result.isConfirmed) {
           const transferResponse = await transfer(
             data.peerId,
             data.amount,
             data.description
           );
-  
+
           if (!transferResponse.data.error) {
-            transferController()
-            return Swal.fire("Success!", "Your transfer was successful.", "success");
-            
+            transferController();
+            return Swal.fire(
+              "Success!",
+              "Your transfer was successful.",
+              "success"
+            );
           } else {
-            transferController()
+            transferController();
             return Swal.fire("Failed!", transferResponse.data.message, "error");
           }
         }
@@ -104,7 +107,9 @@ function Qr(props) {
                 </div>
                 <QRCode
                   id="svg"
-                  value={`https://peerpay.vercel.app/transfer?peerId=qudusayo&amount=&description=${"Wallet Fund"}`}
+                  value={`https://peerpay.vercel.app/transfer?peerId=${localStorage.getItem(
+                    "_peer__ID"
+                  )}&amount=&description=${"Wallet Fund"}`}
                   size={250}
                   bgColor={"#ffffff"}
                   fgColor={"#6055A9"}
