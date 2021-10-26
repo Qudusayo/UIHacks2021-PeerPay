@@ -8,7 +8,7 @@ function RecentCard({peerId, date, amount}) {
     <div className={styles.recentCard} >
       <div className={styles.recentCardImage} >
         <div className={styles.recentCardImageMain}>
-          <img src={logo} alt="logo" width='40' />
+          <img crossOrigin='anonymous' src={logo} alt="logo" width='40' />
         </div>
         <div>
           <h2>{peerId}</h2>

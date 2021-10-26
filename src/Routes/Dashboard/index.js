@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet";
 import Cookies from "js-cookie";
 import axios from "axios";
 import Wrapper from "./../../Components/Wrapper";
+import SkeletonLoader from "./SkeletonLoader";
 
 import RecentCard from "./RecentCard";
 
@@ -19,8 +20,10 @@ class index extends Component {
     this.state = {
       balance: 0,
       transactions: [],
+      fetchingData: true,
     };
   }
+
   componentDidMount() {
     // console.log("mounted");
     const api = `http://localhost:4000/clientTransaction`;
@@ -30,8 +33,9 @@ class index extends Component {
       .then((res) => {
         // console.log(res.data);
         this.setState({
+          fetchingData: false,
           transactions: res.data.transactions.reverse().slice(0, 9),
-          balance: res.data.balance
+          balance: res.data.balance,
         });
       });
   }
@@ -47,21 +51,41 @@ class index extends Component {
             <div className={styles.balanceCard}>
               <div className={styles.balanceCardContent}>
                 <span>Balance</span>
-                <h1>₦ {parseFloat(this.state.balance).toFixed(2)}</h1>
+                <h1>
+                  ₦{" "}
+                  {this.state.fetchingData
+                    ? "***.**"
+                    : parseFloat(this.state.balance).toFixed(2)}
+                </h1>
               </div>
               <div className={styles.balanceCardControllers}>
                 <Link to="/fund">
                   <div>
-                    <img src={plus} alt="plus" width="25" />
+                    <img
+                      crossOrigin="anonymous"
+                      src={plus}
+                      alt="plus"
+                      width="25"
+                    />
                   </div>
                 </Link>
                 <Link to="/transfer">
                   <div>
-                    <img src={send} alt="send" width="25" />
+                    <img
+                      crossOrigin="anonymous"
+                      src={send}
+                      alt="send"
+                      width="25"
+                    />
                   </div>
                 </Link>
                 <div>
-                  <img src={recieve} alt="recieve" width="25" />
+                  <img
+                    crossOrigin="anonymous"
+                    src={recieve}
+                    alt="recieve"
+                    width="25"
+                  />
                 </div>
               </div>
             </div>
@@ -72,12 +96,16 @@ class index extends Component {
                   <Link to="/transactions">See All &gt;</Link>
                 </h3>
               </div>
-              <div className={styles.recentHeaderTransactions} >
-                {/* <RecentCard />
-                <RecentCard />
-                <RecentCard />
-                <RecentCard />
-                <RecentCard /> */}
+              <div className={styles.recentHeaderTransactions}>
+                {this.state.fetchingData ? (
+                  <>
+                    <SkeletonLoader />
+                    <SkeletonLoader />
+                    <SkeletonLoader />
+                    <SkeletonLoader />
+                    <SkeletonLoader />
+                  </>
+                ) : null}
 
                 {this.state.transactions.length ? (
                   this.state.transactions.map((transaction) => (

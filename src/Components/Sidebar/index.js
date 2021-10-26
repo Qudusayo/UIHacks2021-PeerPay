@@ -24,34 +24,34 @@ class Index extends Component {
           <ul>
             <NavLink to="/" exact className={styles.logo} activeClassName={styles.active}>
               <li>
-                <img src={logo} alt="logo" width="50" />
+                <img crossOrigin='anonymous' src={logo} alt="logo" width="50" />
               </li>
             </NavLink>
             <NavLink to="/dashboard" exact activeClassName={styles.active}>
               <li>
-                <img src={dashboard} alt="dashboard" width="25" />
+                <img crossOrigin='anonymous' src={dashboard} alt="dashboard" width="25" />
               </li>
             </NavLink>
             <NavLink to="/transfer" exact activeClassName={styles.active}>
               <li>
-                <img src={transfer} alt="transfer" width="25" />
+                <img crossOrigin='anonymous' src={transfer} alt="transfer" width="25" />
               </li>
             </NavLink>
             <NavLink to="/qr" exact activeClassName={styles.active}>
               <li>
-                <img src={qr} alt="qr" width="25" />
+                <img crossOrigin='anonymous' src={qr} alt="qr" width="25" />
               </li>
             </NavLink>
 
             <NavLink to="/transactions" exact activeClassName={styles.active}>
               <li>
-                <img src={insight} alt="insight" width="25" />
+                <img crossOrigin='anonymous' src={insight} alt="insight" width="25" />
               </li>
             </NavLink>
             
             <NavLink to="/airtime-topup" exact activeClassName={styles.active}>
               <li>
-                <img src={settings} alt="settings" width="25" />
+                <img crossOrigin='anonymous' src={settings} alt="settings" width="25" />
               </li>
             </NavLink>
             
@@ -63,7 +63,7 @@ class Index extends Component {
               onClick={this.logout}
             >
               <li>
-                <img src={logout} alt="logout" width="25" />
+                <img crossOrigin='anonymous' src={logout} alt="logout" width="25" />
               </li>
             </NavLink>
           </ul>

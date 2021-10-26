@@ -1,24 +1,38 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import QRCode from "qrcode.react";
+import { withRouter } from 'react-router-dom'
 
 import Wrapper from "./../../Components/Wrapper";
 import Scan from "./Scan";
 
 import styles from "./style.module.scss";
+import Payment from "../Payment";
 
-function Qr() {
+function Qr(props) {
   const [scanStatus, scanStatusHandler] = useState(false);
 
   const scanController = () => scanStatusHandler(!scanStatus);
 
-  const saveQr = () => {
-    const canvasSave = document.getElementById('svg');
-    const d = canvasSave.toDataURL('image/png');
-    const w = window.open('about:blank', 'image from canvas');
-    w.document.write("<img src='"+d+"' alt='from canvas'/>");
-    console.log('Saved!');
+  const fixScanData = (data) => {
+    if (data.peerId && data.amount && data.description) {
+      alert("Lets Pay");
+    } else {
+      alert("Move to transfer Page");
+    }
+    if(!(!!data.amount && !!data.peerId && !!data.description)){
+      props.history.push(`transfer?peerId=${data.peerId}&amount=${data.amount}&description=${data.description}`)
+    }
+    console.log(data);
   };
+
+  // const saveQr = () => {
+  //   const canvasSave = document.getElementById('svg');
+  //   const d = canvasSave.toDataURL('image/png');
+  //   const w = window.open('about:blank', 'image from canvas');
+  //   w.document.write("<img crossOrigin='anonymous'  src='"+d+"' alt='from canvas'/>");
+  //   console.log('Saved!');
+  // };
 
   return (
     <Wrapper>
@@ -75,14 +89,14 @@ function Qr() {
                     excavate: true,
                   }}
                 />
-                <div>
+                {/* <div>
                   <button onClick={() => saveQr()} >Save QR</button>
-                </div>
+                </div> */}
               </div>
             </div>
           </>
         ) : (
-          <Scan />
+          <Scan scanResponse={fixScanData} />
         )}
         <button onClick={() => scanController()}>
           {scanStatus ? "Show" : "Scan"} Qr
@@ -92,4 +106,4 @@ function Qr() {
   );
 }
 
-export default Qr;
+export default withRouter(Qr);

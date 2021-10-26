@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import transfer from "../../controllers/transfer";
+import Swal from "sweetalert2";
+import qs from "qs";
+import Spinner from "../../Components/Spinner";
 
 import Wrapper from "./../../Components/Wrapper";
 import Scan from "./../Qr/Scan";
@@ -15,6 +18,7 @@ class Payment extends Component {
       peerId: "",
       amount: "",
       description: "",
+      processing: false,
     };
 
     this.onChange = this.onChange.bind(this);
@@ -28,26 +32,56 @@ class Payment extends Component {
   onSubmit = async (e) => {
     e.preventDefault();
 
-    const transferResponse = await transfer(
-      this.state.peerId,
-      this.state.amount,
-      this.state.description
-    );
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Transfer!",
+    }).then(async (result) => {
+      this.setState({ processing: true });
+      if (result.isConfirmed) {
+        const transferResponse = await transfer(
+          this.state.peerId,
+          this.state.amount,
+          this.state.description
+        );
 
-    console.log(transferResponse);
+        if (!transferResponse.data.error) {
+          Swal.fire("Success!", "Your transfer was successful.", "success");
+          this.setState({ processing: false });
+          return this.setState({ peerId: "", amount: "", description: "" });
+        } else {
+          this.setState({ processing: false });
+          Swal.fire("Failed!", transferResponse.data.message, "error");
+        }
+      }
+    });
   };
 
   error = (msg) => alert(msg);
 
   switchPaymentType(type) {
+    if (this.state.processing) return;
     this.setState({ paymentType: type });
+  }
+
+  componentDidMount() {
+    let query = qs.parse(this.props.location.search, {
+      ignoreQueryPrefix: true,
+    });
+    const { peerId, amount, description } = query;
+    this.setState({ peerId, amount, description });
+    console.log(query);
   }
 
   render() {
     return (
       <Wrapper>
         <Helmet>
-          <title>PeerPay | Qr scan </title>
+          <title>PeerPay | Pay </title>
         </Helmet>
         <div className={styles.payment}>
           <div className={styles.paymentType}>
@@ -69,33 +103,39 @@ class Payment extends Component {
                 <div>
                   <label htmlFor="peerId">PeerId</label>
                   <input
-                    autoComplete='off'
+                    autoComplete="off"
                     onChange={this.onChange}
                     type="text"
                     id="peerId"
+                    value={this.state.peerId}
                   />
                 </div>
                 <div>
                   <label htmlFor="amount">Amount</label>
                   <span className={styles.inputSymbolNaira}>
                     <input
-                      autoComplete='off'
+                      autoComplete="off"
                       onChange={this.onChange}
                       type="number"
                       id="amount"
+                      value={this.state.amount}
                     />
                   </span>
                 </div>
                 <div>
                   <label htmlFor="description">Description</label>
                   <input
-                    autoComplete='off'
+                    autoComplete="off"
                     onChange={this.onChange}
                     type="text"
                     id="description"
+                    value={this.state.description}
                   />
                 </div>
-                <button type="submit">Transfer</button>
+                <button type="submit">
+                  {" "}
+                  {this.state.processing ? <Spinner /> : "Transfer"}{" "}
+                </button>
               </form>
             )}
           </div>

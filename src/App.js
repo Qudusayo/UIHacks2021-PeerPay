@@ -17,7 +17,7 @@ function App() {
       <Route path="/" exact>
         <div className="App">
           <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
+            <img crossOrigin='anonymous' src={logo} className="App-logo" alt="logo" />
             <h2>PeerPay</h2>
             <p>Making Peer Payment Simpler.</p>
             <Link to="/login">

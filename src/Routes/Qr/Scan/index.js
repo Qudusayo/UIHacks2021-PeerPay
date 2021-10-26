@@ -28,7 +28,8 @@ class Scan extends Component {
       description: this.getParameterByName('description', data)
     }
     if (data) {
-      console.log(validPeerLink, info);
+      // console.log(validPeerLink, info);
+      return this.props.scanResponse(info);
     }
   };
   handleError = (err) => {

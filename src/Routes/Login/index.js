@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
+import Spinner from "./../../Components/Spinner";
+import Swal from "sweetalert2";
 
 import logo from "./../../assets/icons/logo.svg";
 import styles from "./style.module.scss";
@@ -11,6 +13,7 @@ class Login extends Component {
     this.state = {
       phoneNumber: "",
       password: "",
+      processing: false,
     };
 
     this.onChange = this.onChange.bind(this);
@@ -28,14 +31,35 @@ class Login extends Component {
       password: this.state.password,
     };
 
+    this.setState({ processing: true });
+
     axios
       .post(`http://localhost:4000/auth/signin`, data)
       .then((response) => {
-        console.log(response.data)
-        Cookies.set('_peer__pay', response.data.authToken)
-        return this.props.history.push('/dashboard')
+        console.log(response.data);
+        if (response.data.authenticated) {
+          Cookies.set("_peer__pay", response.data.authToken);
+          return this.props.history.push("/dashboard");
+        } else {
+          Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          }).fire({
+            icon: 'error',
+            title: response.data.errorMsg
+          })
+          return this.setState({ processing: false });
+        }
       })
       .catch((error) => {
+        this.setState({ processing: false });
         return this.error("Error Fetching user info, Kindly try again");
       });
   };
@@ -47,7 +71,7 @@ class Login extends Component {
       <div className={styles.formComponent}>
         <div className={styles.logo}>
           <div className={styles.logoInfo}>
-            <img src={logo} alt="logo" />
+            <img crossOrigin="anonymous" src={logo} alt="logo" />
             <h2>PeerPay</h2>
           </div>
           <span>Account Login</span>
@@ -71,7 +95,9 @@ class Login extends Component {
               onChange={this.onChange}
             />
           </div>
-          <button type="submit">Sign In</button>
+          <button type="submit">
+            {this.state.processing ? <Spinner /> : "Sign In"}
+          </button>
         </form>
       </div>
     );
